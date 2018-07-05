@@ -91,6 +91,7 @@ class ClassReader
      * @param array $column_names
      * @return array
      * @throws ColumnDoesNotExistException
+     * @throws WrongInstanceException
      */
     public function getValues($object, array $column_names = []) {
 

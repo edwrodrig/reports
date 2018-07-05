@@ -37,11 +37,16 @@ class Column
 
     }
 
+    /**
+     * Get the name of the current column
+     * @return string
+     */
     public function getName() : string {
         return $this->name;
     }
 
     /**
+     * This function parses the method relative to the column
      * @throws exception\InvalidColumnFormat
      */
     private function parse() {
@@ -62,6 +67,9 @@ class Column
     }
 
     /**
+     * Check if the method is a report column
+     *
+     * If the method as an @report_column annotation in the doc comment
      * @param ReflectionMethod $method
      * @return bool
      */
@@ -77,6 +85,9 @@ class Column
     }
 
     /**
+     * Get the value of the column.
+     *
+     * This function calls the method relative to the column. You must pass the final object.
      * @param $object
      * @return mixed
      */
