@@ -11,7 +11,6 @@ namespace edwrodrig\reports;
 
 use BadMethodCallException;
 use phpDocumentor\Reflection\DocBlockFactory;
-use ReflectionClass;
 use ReflectionMethod;
 
 class Column
@@ -28,8 +27,8 @@ class Column
 
     /**
      * Column constructor.
-     * @param ReflectionClass $class
      * @param ReflectionMethod $method
+     * @throws exception\InvalidColumnFormat
      */
     public function __construct(ReflectionMethod $method) {
         $this->reflection_method = $method;

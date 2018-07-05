@@ -44,8 +44,6 @@ class ClassReaderTest extends TestCase
 
         $column = $reader->getColumn('number');
         $this->assertEquals(2, $column->getValue($object));
-
-
     }
 
 }

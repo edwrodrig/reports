@@ -9,7 +9,10 @@ declare(strict_types=1);
 
 namespace edwrodrig\reports;
 
-
+use Error;
+use Exception;
+use edwrodrig\reports\exception\ColumnDoesNotExistException;
+use edwrodrig\reports\exception\WrongInstanceException;
 use ReflectionClass;
 use ReflectionMethod;
 
@@ -41,6 +44,7 @@ class ClassReader
 
     /**
      * Internal function that do the initial parsing of the object methods serachng for report columns
+     * @throws exception\InvalidColumnFormat
      */
     private function parse() {
         /**
@@ -80,5 +84,39 @@ class ClassReader
      */
     public function getColumn(string $column_name) {
         return $this->columns[$column_name];
+    }
+
+    /**
+     * @param $object
+     * @param array $column_names
+     * @return array
+     * @throws ColumnDoesNotExistException
+     */
+    public function getValues($object, array $column_names = []) {
+
+        if ( !$this->reflection_class->isInstance($object) )
+            throw new WrongInstanceException($this->reflection_class->getName());
+
+        if ( empty($column_names) ) {
+            $column_names = $this->getColumnNames();
+        }
+
+        $values = [];
+
+        foreach ( $column_names as $column_name ) {
+            if ( !isset($this->columns[$column_name]) ) {
+                throw new ColumnDoesNotExistException($this->reflection_class->getName(), $column_name);
+            }
+
+            $column = $this->columns[$column_name];
+            try {
+                $values[$column_name] = $column->getValue($object);
+            } catch ( Exception | Error $e ) {
+                $values[$column_name] = $e;
+            }
+
+        }
+        return $values;
+
     }
 }
