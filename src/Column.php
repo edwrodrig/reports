@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace edwrodrig\reports;
 
 use BadMethodCallException;
+use edwrodrig\reports\exception\WrongInstanceException;
 use phpDocumentor\Reflection\DocBlockFactory;
 use ReflectionMethod;
 
@@ -28,7 +29,7 @@ class Column
     /**
      * Column constructor.
      * @param ReflectionMethod $method
-     * @throws exception\InvalidColumnFormat
+     * @throws exception\InvalidColumnFormatException
      */
     public function __construct(ReflectionMethod $method) {
         $this->reflection_method = $method;
@@ -47,7 +48,7 @@ class Column
 
     /**
      * This function parses the method relative to the column
-     * @throws exception\InvalidColumnFormat
+     * @throws exception\InvalidColumnFormatException
      */
     private function parse() {
         $doc_comment = $this->reflection_method->getDocComment();
@@ -58,7 +59,7 @@ class Column
         {
             $tags = $reader->getTagsByName('report_column');
             if (empty($tags))
-                throw new exception\InvalidColumnFormat('COLUMN_WITHOUT_NAME');
+                throw new exception\InvalidColumnFormatException('COLUMN_WITHOUT_NAME');
 
             $this->name = strval($tags[0]);
         }
@@ -90,11 +91,19 @@ class Column
      * This function calls the method relative to the column. You must pass the final object.
      * @param $object
      * @return mixed
+     * @throws WrongInstanceException
      */
     public function getValue($object) {
         if ( is_null($object) ) {
             throw new BadMethodCallException("OBJECT UNDEFINED");
         }
+
+        $class = $this->reflection_method->getDeclaringClass();
+
+        if ( !$class->isInstance($object) ) {
+            throw new WrongInstanceException($class->getName());
+        }
+
         return $this->reflection_method->invoke($object);
     }
 

@@ -12,7 +12,7 @@ namespace edwrodrig\reports\exception;
 
 use Exception;
 
-class InvalidColumnFormat extends Exception
+class InvalidColumnFormatException extends Exception
 {
 
     /**
