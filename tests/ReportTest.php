@@ -38,5 +38,5 @@ class ReportTest extends TestCase
         $report = new Report(RowObject::class);
         $report->setColumnNames(['not_existant']);
     }
-    
+
 }
