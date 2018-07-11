@@ -7,7 +7,7 @@ declare(strict_types=1);
  * Time: 11:59
  */
 
-namespace test\edwrodrig\reports;
+namespace test\edwrodrig\reports\view;
 
 use edwrodrig\reports\Report;
 use edwrodrig\reports\view\HtmlTable;

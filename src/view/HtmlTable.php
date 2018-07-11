@@ -1,14 +1,7 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: edwin
- * Date: 09-07-18
- * Time: 16:19
- */
 
 namespace edwrodrig\reports\view;
-
 
 use edwrodrig\reports\Report;
 use edwrodrig\reports\ReportColumnError;

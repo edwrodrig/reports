@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace test\edwrodrig\reports;
 
-use edwrodrig\reports\exception\ColumnDoesNotExistException;
 use edwrodrig\reports\Report;
 use PHPUnit\Framework\TestCase;
 use test\edwrodrig\reports\dummy\RowObject;
