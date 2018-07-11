@@ -6,6 +6,12 @@ namespace edwrodrig\reports\view;
 use edwrodrig\reports\Report;
 use edwrodrig\reports\ReportColumnError;
 
+/**
+ * Class HtmlTable
+ *
+ * This class helps to show a {@see Report report} as an HTML Table
+ * @package edwrodrig\reports\view
+ */
 class HtmlTable
 {
     /**
@@ -13,7 +19,10 @@ class HtmlTable
      */
     private $report;
 
-
+    /**
+     * HtmlTable constructor.
+     * @param Report $report
+     */
     public function __construct(Report $report) {
         $this->report = $report;
     }
@@ -89,7 +98,7 @@ class HtmlTable
      * @param ReportColumnError $error_column
      */
     protected function printErrorCell(ReportColumnError $error_column) {?>
-        <td style="color:red"><?=$error_column->getError()->getMessage()?></td>
+        <td style="background-color:red"><?=$error_column->getError()->getMessage()?></td>
         <?php
     }
 }

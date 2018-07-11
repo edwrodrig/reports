@@ -1,18 +1,17 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: edwin
- * Date: 11-07-18
- * Time: 9:23
- */
 
 namespace edwrodrig\reports\view;
-
 
 use edwrodrig\reports\Report;
 use edwrodrig\reports\ReportColumnError;
 
+/**
+ * Class CsvTable
+ *
+ * This class helps to display a {@see Report report} as a CsvTable
+ * @package edwrodrig\reports\view
+ */
 class CsvTable
 {
     /**

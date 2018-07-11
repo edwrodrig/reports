@@ -1,14 +1,7 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: edwin
- * Date: 05-07-18
- * Time: 12:32
- */
 
 namespace edwrodrig\reports\exception;
-
 
 use Exception;
 

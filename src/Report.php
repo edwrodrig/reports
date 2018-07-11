@@ -29,6 +29,9 @@ class Report
 
     /**
      * Report constructor.
+     * @param $class_or_object
+     * @throws \ReflectionException
+     * @throws exception\InvalidColumnFormatException
      */
     public function __construct($class_or_object) {
         $this->reader = new ClassReader($class_or_object);

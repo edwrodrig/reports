@@ -86,4 +86,8 @@ class ClassReader
     public function getColumn(string $column_name) {
         return $this->columns[$column_name];
     }
+
+    public function getId() : string {
+        return $this->getColumn('id');
+    }
 }

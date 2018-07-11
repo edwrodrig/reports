@@ -55,7 +55,7 @@ class HtmlTableTest extends TestCase
         <tbody>
             <tr><td>edwin</td><td>1</td></tr>
             <tr><td>amanda</td><td>2</td></tr>
-            <tr><td style="color:red">NO_NAME</td><td style="color:red">NO_NUMBER</td></tr>
+            <tr><td style="background-color:red">NO_NAME</td><td style="background-color:red">NO_NUMBER</td></tr>
         </tbody>
         </table>     
 EOF

@@ -9,7 +9,12 @@ declare(strict_types=1);
 
 namespace edwrodrig\reports;
 
-
+/**
+ * Class ReportColumnError
+ *
+ * A class to store important information of an column with an error
+ * @package edwrodrig\reports
+ */
 class ReportColumnError
 {
     /**
@@ -33,6 +38,10 @@ class ReportColumnError
      */
     public function getColumnName() : string {
         return $this->column_name;
+    }
+
+    public function getId() : string {
+        return $this->getObject()->getId();
     }
 
     /**

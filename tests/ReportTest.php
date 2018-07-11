@@ -17,6 +17,7 @@ class ReportTest extends TestCase
 {
 
     /**
+     * @throws \ReflectionException
      * @throws \edwrodrig\reports\exception\ColumnDoesNotExistException
      */
     public function testReportColumns() {
@@ -31,6 +32,7 @@ class ReportTest extends TestCase
     /**
      * @expectedException \edwrodrig\reports\exception\ColumnDoesNotExistException
      * @expectedExceptionMessage not_existant
+     * @throws \ReflectionException
      * @throws \edwrodrig\reports\exception\ColumnDoesNotExistException
      */
     public function testReportInvalidColumns() {
