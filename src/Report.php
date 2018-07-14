@@ -96,6 +96,58 @@ class Report
     }
 
     /**
+     * Get the number of rows
+     *
+     * @uses Report::getRows()
+     * @return int
+     */
+    public function getNumRows() : int {
+        return count($this->rows);
+    }
+
+
+    /**
+     * Get the number of cells
+     *
+     * Must match the number of rows times the number of columns
+     * @return int
+     */
+    public function getNumCells() : int  {
+        return count($this->column_names) * $this->getNumRows();
+    }
+
+    /**
+     * Get the number of cells that are valid
+     *
+     * An invalid cell is a cell that throws an error or exception
+     * @return int
+     */
+    public function getNumValidCells() : int {
+        return $this->getNumCells() - $this->getNumErrors();
+    }
+
+    /**
+     * Get the completion ratio of the report
+     *
+     * the valid cells divided the total cells
+     * @return float
+     */
+    public function getCompletitionRatio() : float {
+        return $this->getNumValidCells() / $this->getNumCells();
+    }
+
+    /**
+     * Get the number of errors
+     *
+     * The number of cells that throws errors
+     * @return int
+     */
+    public function getNumErrors() : int {
+        return count($this->getErrors());
+    }
+
+    /**
+     * Get a list with errors
      * @return ReportColumnError[]
      */
     public function getErrors() : array {

@@ -37,9 +37,7 @@ class HtmlErrorList
      */
     public function print() {?>
         <ol>
-            <li>
-            <?php $this->printHeaders()?>
-            </li>
+            <?php $this->printErrors()?>
         </ol>
         <?php
     }

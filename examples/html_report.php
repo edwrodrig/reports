@@ -1,15 +1,8 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: edwin
- * Date: 11-07-18
- * Time: 11:44
- */
 
 use edwrodrig\reports\Report;
-use edwrodrig\reports\view\HtmlErrorList;
-use edwrodrig\reports\view\HtmlTable;
+use edwrodrig\reports\view\HtmlDefaultReport;
 
 include_once __DIR__ . '/../vendor/autoload.php';
 
@@ -52,10 +45,5 @@ $data = [
 foreach ( $data as $row )
     $report->addRow(new Person($row));
 
-$table = new HtmlTable($report);
-
-$table->print();
-
-
-$error_list = new HtmlErrorList($report);
-$error_list->print();
+$html_report = new HtmlDefaultReport($report);
+$html_report->print();
