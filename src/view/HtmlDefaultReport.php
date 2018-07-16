@@ -1,25 +1,43 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: edwin
- * Date: 14-07-18
- * Time: 11:12
- */
 
 namespace edwrodrig\reports\view;
-
 
 use edwrodrig\reports\Report;
 
 class HtmlDefaultReport
 {
 
+    /**
+     * @var Report
+     */
+    private $report;
+
+    /**
+     * HtmlDefaultReport constructor.
+     * @param Report $report
+     */
     public function __construct(Report $report) {
         $this->report = $report;
 
     }
 
+    /**
+     * Print the tabular section of the report.
+     *
+     * @uses HtmlTable
+     */
+    public function printTableSection() {
+        $table = new HtmlTable($this->report);
+        $table->print();
+    }
+
+    /**
+     * Prints the error section.
+     *
+     * The list of errors.
+     * @uses HtmlErrorList
+     */
     public function printErrorSection() {
         $num_errors = count($this->report->getErrors());
 
@@ -33,6 +51,11 @@ class HtmlDefaultReport
         <?php endif;
     }
 
+    /**
+     * Prints the completition bar of all the report data.
+     *
+     * Very handy to see the global state of the data.
+     */
     public function printCompletitionSection() {
         $percentage = (int)($this->report->getCompletitionRatio() * 100);
         ?>
@@ -47,6 +70,9 @@ class HtmlDefaultReport
         <?php
     }
 
+    /**
+     * Print the report
+     */
     public function print() {?>
 <!DOCTYPE html>
 <html>
@@ -90,12 +116,10 @@ class HtmlDefaultReport
     </style>
 </head>
 <body>
-<?php $this->printCompletitionSection()?>
 <?php
-        $table = new HtmlTable($this->report);
-        $table->print();
-
-        $this->printErrorSection();
+    $this->printCompletitionSection();
+    $this->printTableSection();
+    $this->printErrorSection();
 ?>
 </body>
 </html>

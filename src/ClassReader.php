@@ -33,7 +33,8 @@ class ClassReader
      * @throws \ReflectionException
      * @throws exception\InvalidColumnFormatException
      */
-    public function __construct($class_or_object) {
+    public function __construct($class_or_object)
+    {
         $this->reflection_class = new ReflectionClass($class_or_object);
         $this->parse();
     }
@@ -43,14 +44,15 @@ class ClassReader
      * Internal function that do the initial parsing of the object methods serachng for report columns
      * @throws exception\InvalidColumnFormatException
      */
-    private function parse() {
+    private function parse()
+    {
         /**
          * @var $method ReflectionMethod
          */
-        foreach ( $this->reflection_class->getMethods() as $method ) {
-            if ( !$method->isPublic() ) continue;
+        foreach ($this->reflection_class->getMethods() as $method) {
+            if (!$method->isPublic()) continue;
 
-            if ( !Column::isMethodReportColumn($method) ) continue;
+            if (!Column::isMethodReportColumn($method)) continue;
 
             $column = new Column($method);
             $this->columns[$column->getName()] = $column;
@@ -62,11 +64,17 @@ class ClassReader
      * Get all columns
      * @return Column[]
      */
-    public function getColumns() : array {
+    public function getColumns(): array
+    {
         return $this->columns;
     }
 
-    public function getClassName() : string {
+    /**
+     * Get the class name of the row data
+     * @return string
+     */
+    public function getClassName(): string
+    {
         return $this->reflection_class->getName();
     }
 
@@ -74,8 +82,11 @@ class ClassReader
      * Get the column names
      * @return string[]
      */
-    public function getColumnNames() : array {
-        return array_values(array_map(function(Column $column) { return $column->getName(); }, $this->columns));
+    public function getColumnNames(): array
+    {
+        return array_values(array_map(function (Column $column) {
+            return $column->getName();
+        }, $this->columns));
     }
 
     /**
@@ -83,11 +94,8 @@ class ClassReader
      * @param string $column_name
      * @return Column
      */
-    public function getColumn(string $column_name) {
+    public function getColumn(string $column_name)
+    {
         return $this->columns[$column_name];
-    }
-
-    public function getId() : string {
-        return $this->getColumn('id');
     }
 }

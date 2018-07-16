@@ -1,5 +1,6 @@
 {
     "name": "edwrodrig/reports",
+    "description" : "A library yto help to do tabular reports in HTML and CSV",
     "license" : "MIT",
     "authors": [
         {

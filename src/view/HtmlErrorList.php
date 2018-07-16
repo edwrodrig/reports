@@ -13,6 +13,14 @@ namespace edwrodrig\reports\view;
 use edwrodrig\reports\Report;
 use edwrodrig\reports\ReportColumnError;
 
+/**
+ * Class HtmlErrorList
+ *
+ * Class to assist the creation of a erorrs list.
+ * An error list is a way to display incomplete cells in a linear way.
+ * It is easy to see a list than searching in a a table
+ * @package edwrodrig\reports\view
+ */
 class HtmlErrorList
 {
     /**
@@ -56,6 +64,12 @@ class HtmlErrorList
 
     }
 
+    /**
+     * Prints an error element in the error list
+     *
+     * Subclass this for different behaviors.
+     * @param ReportColumnError $error
+     */
     public function printError(ReportColumnError $error)
     {
         printf(
@@ -64,35 +78,5 @@ class HtmlErrorList
                 $error->getId(),
                 $error->getError()->getMessage()
         );
-    }
-
-    /**
-     * Print a table row
-     * @param $row
-     */
-    protected function printRow($row) {?>
-        <tr>
-            <?php foreach ( $row as $column_name => $column_value ) : ?>
-                <?php if ( is_string($column_value)) : ?>
-                    <td><?=$column_value?></td>
-                <?php elseif ( is_numeric($column_value)) : ?>
-                    <td><?=$column_value?></td>
-                <?php elseif ( $column_value instanceof ReportColumnError ) :
-                    $this->printErrorCell($column_value);
-                else: ?>
-                    <td></td>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </tr>
-        <?php
-    }
-
-    /**
-     * Print an error row
-     * @param ReportColumnError $error_column
-     */
-    protected function printErrorCell(ReportColumnError $error_column) {?>
-        <td style="background-color:red"><?=$error_column->getError()->getMessage()?></td>
-        <?php
     }
 }

@@ -20,6 +20,10 @@ class CsvTable
     private $report;
 
 
+    /**
+     * CsvTable constructor.
+     * @param Report $report
+     */
     public function __construct(Report $report) {
         $this->report = $report;
     }
