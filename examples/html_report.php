@@ -36,9 +36,9 @@ class Person
 $report = new Report(Person::class);
 
 $data = [
-    ["edwin", "rodriguez"],
+    ["edwin", "rodríguez"],
     ["amanda", "morales"],
-    ["edgar", "rodriguez"],
+    ["edgar", "rodríguez"],
     ["unknown", null]
 ];
 

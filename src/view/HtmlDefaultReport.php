@@ -77,6 +77,7 @@ class HtmlDefaultReport
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <style>
         body {
             font-size: 0.8em;
