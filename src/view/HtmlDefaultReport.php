@@ -62,7 +62,7 @@ class HtmlDefaultReport
         <div class="completition">
             <div class="completed" style="width:<?=$percentage?>%"></div>
             <div class="info"><?=sprintf(
-                '%d/%d (%%%d)',
+                '%d/%d (%d%%)',
                 $this->report->getNumValidCells(),
                 $this->report->getNumCells(),
                 $percentage)?></div>
