@@ -20,12 +20,22 @@ class CsvTable
     private $report;
 
 
+    private $separator = ',';
+
     /**
      * CsvTable constructor.
      * @param Report $report
      */
     public function __construct(Report $report) {
         $this->report = $report;
+    }
+
+    /**
+     * Set the separator of the table
+     * @param string $separator
+     */
+    public function setSeparator(string $separator) {
+        $this->separator = $separator;
     }
 
     /**
@@ -47,7 +57,7 @@ class CsvTable
      * @see https://www.w3schools.com/tags/tag_thead.asp thead
      */
     public function printHeaders() {
-        echo implode(',', $this->report->getHeaders());
+        echo implode($this->separator, $this->report->getHeaders());
         echo "\n";
     }
 
@@ -85,7 +95,7 @@ class CsvTable
                 $row_values[] = '';
         }
 
-        return implode(',', $row_values);
+        return implode($this->separator, $row_values);
     }
 
     /**
