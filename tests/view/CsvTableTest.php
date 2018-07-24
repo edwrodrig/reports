@@ -57,4 +57,46 @@ EOF;
         $actual = ob_get_clean();
         $this->assertEquals($expected, $actual);
     }
+
+
+    public function testPrintArrayCell()
+    {
+        $report = new Report(RowObject::class);
+
+        $object = new RowObject;
+        $object->data = 'edwin';
+        $object->number = 1;
+
+        $report->addRow($object);
+
+        $object = new RowObject;
+        $object->data = ['amanda', 'morales'];
+        $object->number = 2;
+
+        $report->addRow($object);
+
+        $object = new RowObject;
+        $object->data = new Exception('NO_NAME');
+        $object->number = new Exception('NO_NUMBER');
+
+        $report->addRow($object);
+
+        $table = new CsvTable($report);
+        $table->setSeparator("\t");
+
+
+        $expected = <<<EOF
+data	number
+edwin	1
+amanda,morales	2
+ERROR	ERROR
+
+EOF;
+
+        ob_start();
+        $table->print();
+
+        $actual = ob_get_clean();
+        $this->assertEquals($expected, $actual);
+    }
 }

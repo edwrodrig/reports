@@ -73,13 +73,28 @@ class HtmlTable
     }
 
     /**
+     * Print a table row that is a list
+     * @param array $row
+     */
+    protected function printArrayRow(array $row) {?>
+        <ul>
+        <?php foreach ( $row as $column_value ) : ?>
+            <li><?=$column_value?></li>
+        <?php endforeach; ?>
+        </ul>
+        <?php
+    }
+
+    /**
      * Print a table row
      * @param $row
      */
     protected function printRow($row) {?>
         <tr>
         <?php foreach ( $row as $column_name => $column_value ) : ?>
-            <?php if ( is_string($column_value)) : ?>
+            <?php if ( is_array($column_value))  : ?>
+                <td><?=$this->printArrayRow($column_value)?></td>
+            <?php elseif ( is_string($column_value)) : ?>
                 <td><?=$column_value?></td>
             <?php elseif ( is_numeric($column_value)) : ?>
                 <td><?=$column_value?></td>

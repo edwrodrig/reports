@@ -85,7 +85,9 @@ class CsvTable
     protected function getRow($row) : string{
         $row_values = [];
         foreach ( $row as $column_name => $column_value ) {
-            if (is_string($column_value))
+            if ( is_array($column_value))
+                $row_values[] = implode(',', $column_value);
+            elseif (is_string($column_value))
                 $row_values[] = $column_value;
             elseif (is_numeric($column_value))
                 $row_values[] = $column_value;
