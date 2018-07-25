@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-use edwrodrig\reports\Report;
-use edwrodrig\reports\view\HtmlDefaultReport;
+use edwrodrig\reports\ReportSet;
+use edwrodrig\reports\view\HtmlOrganizedReport;
 
 include_once __DIR__ . '/../vendor/autoload.php';
 
@@ -34,15 +34,22 @@ class Person
 }
 
 $data = [
-    ["edwin", "rodríguez"],
-    ["amanda", "morales"],
-    ["edgar", "rodríguez"],
-    ["unknown", null]
+    'person_1' => [
+        ["edwin", "rodríguez"],
+        ["amanda", "morales"]
+    ],
+    'person_2' => [
+        ["edgar", "rodríguez"],
+        ["unknown", null]
+    ]
 ];
 
-$report = Report::createFromArray(Person::class, $data);
+$report = new ReportSet(Person::class, $data);
 
-$html_report = new HtmlDefaultReport($report);
+$html_report = new HtmlOrganizedReport($report);
+
 $html_report->setTitle('Example report');
-$html_report->setParentUrl('http://www.google.cl');
+$html_report->setTargetDir('/home/edwin');
+$html_report->setIdColumnName('boss');
+$html_report->setElementColumnName('persons');
 $html_report->print();

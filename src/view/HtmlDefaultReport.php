@@ -14,12 +14,28 @@ class HtmlDefaultReport
     private $report;
 
     /**
+     * @var string
+     */
+    private $title = 'Report';
+
+
+    private $parent_url = null;
+
+    /**
      * HtmlDefaultReport constructor.
      * @param Report $report
      */
     public function __construct(Report $report) {
         $this->report = $report;
 
+    }
+
+    public function setTitle(string $title) {
+        $this->title = $title;
+    }
+
+    public function setParentUrl(string $parent_url) {
+        $this->parent_url = $parent_url;
     }
 
     /**
@@ -117,7 +133,10 @@ class HtmlDefaultReport
     </style>
 </head>
 <body>
-<?php
+<h1><?=$this->title?></h1>
+<?php if ( !is_null($this->parent_url) ) : ?>
+    <a href="<?=$this->parent_url?>">Back to parent</a>
+<?php endif;
     $this->printCompletitionSection();
     $this->printTableSection();
     $this->printErrorSection();
