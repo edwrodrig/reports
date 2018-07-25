@@ -19,6 +19,7 @@ class ReportTest extends TestCase
     /**
      * @throws \ReflectionException
      * @throws \edwrodrig\reports\exception\ColumnDoesNotExistException
+     * @throws \edwrodrig\reports\exception\InvalidColumnFormatException
      */
     public function testReportColumns() {
         $report = new Report(RowObject::class);
@@ -34,10 +35,20 @@ class ReportTest extends TestCase
      * @expectedExceptionMessage not_existant
      * @throws \ReflectionException
      * @throws \edwrodrig\reports\exception\ColumnDoesNotExistException
+     * @throws \edwrodrig\reports\exception\InvalidColumnFormatException
      */
     public function testReportInvalidColumns() {
         $report = new Report(RowObject::class);
         $report->setColumnNames(['not_existant']);
+    }
+
+    /**
+     * @throws \ReflectionException
+     * @throws \edwrodrig\reports\exception\InvalidColumnFormatException
+     */
+    public function testReportCreateFromArray() {
+        $report = Report::createFromArray(RowObject::class, [1,2,3]);
+        $this->assertEquals(3, $report->getNumRows());
     }
 
 }

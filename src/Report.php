@@ -31,12 +31,31 @@ class Report
      * Report constructor.
      * @param $class_or_object
      * @throws \ReflectionException
-     * @throws exception\InvalidColumnFormatException
+     * @throws \edwrodrig\reports\exception\InvalidColumnFormatException
      */
     public function __construct($class_or_object) {
         $this->reader = new ClassReader($class_or_object);
 
         $this->column_names = $this->reader->getColumnNames();
+    }
+
+    /**
+     * Create a report from array
+     *
+     * It just call the constructor an then call {@see Report::addRow()} for each element in the array.
+     * @param $class_or_object
+     * @param array $data
+     * @return Report
+     * @throws \ReflectionException
+     * @throws \edwrodrig\reports\exception\InvalidColumnFormatException
+     */
+    public function createFromArray($class_or_object, array $data) : self {
+        $report = new self($class_or_object);
+        $class = $report->reader->getClassName();
+        foreach ( $data as $element ) {
+            $report->addRow(new $class($element));
+        }
+        return $report;
     }
 
     /**

@@ -9,7 +9,7 @@ class InvalidColumnFormatException extends Exception
 {
 
     /**
-     * InvalidColumnFormat constructor.
+     * InvalidColumnFormatException constructor.
      * @param string $string
      */
     public function __construct(string $string)

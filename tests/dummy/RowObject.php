@@ -15,9 +15,9 @@ use Exception;
 class RowObject
 {
 
-    public $data;
+    public $data = [];
 
-    public $number;
+    public $number = 1;
 
     /**
      * @report_column data
