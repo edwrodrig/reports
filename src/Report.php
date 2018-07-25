@@ -49,7 +49,7 @@ class Report
      * @throws \ReflectionException
      * @throws \edwrodrig\reports\exception\InvalidColumnFormatException
      */
-    public function createFromArray($class_or_object, array $data) : self {
+    static public function createFromArray($class_or_object, $data) : self {
         $report = new self($class_or_object);
         $class = $report->reader->getClassName();
         foreach ( $data as $element ) {
