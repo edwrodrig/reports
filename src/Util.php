@@ -35,7 +35,6 @@ class Util
      * }
      * ```
      *
-     *
      * @param Iterable $traversable If it is an object must have a trivial constructor
      * @param callable $criteria the criteria based in
      * @param callable|null $add_function
