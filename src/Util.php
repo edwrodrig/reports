@@ -9,8 +9,6 @@
 namespace edwrodrig\reports;
 
 
-use Traversable;
-
 class Util
 {
 
