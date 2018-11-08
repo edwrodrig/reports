@@ -20,7 +20,6 @@ class ReportSet implements IteratorAggregate
      * It just call the constructor an then call {@see Report::addRow()} for each element in the array.
      * @param $class_or_object
      * @param array $data
-     * @return Report
      * @throws \ReflectionException
      * @throws \edwrodrig\reports\exception\InvalidColumnFormatException
      */
@@ -32,6 +31,9 @@ class ReportSet implements IteratorAggregate
         uasort($this->reports, function(Report $a, Report $b) { return $b->getCompletitionRatio() <=> $a->getCompletitionRatio(); });
     }
 
+    /**
+     * @return ArrayIterator|\Traversable|Report[]
+     */
     public function getIterator() {
         return new ArrayIterator($this->reports);
     }
