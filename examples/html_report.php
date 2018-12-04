@@ -43,6 +43,7 @@ $data = [
 $report = Report::createFromArray(Person::class, $data);
 
 $html_report = new HtmlDefaultReport($report);
-$html_report->setTitle('Example report');
-$html_report->setParentUrl('http://www.google.cl');
-$html_report->print();
+$html_report
+        ->setTitle('Example report')
+        ->setParentUrl('http://www.google.cl')
+        ->print();

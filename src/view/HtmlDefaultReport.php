@@ -30,12 +30,14 @@ class HtmlDefaultReport
 
     }
 
-    public function setTitle(string $title) {
+    public function setTitle(string $title) : HtmlDefaultReport {
         $this->title = $title;
+        return $this;
     }
 
-    public function setParentUrl(string $parent_url) {
+    public function setParentUrl(string $parent_url) : HtmlDefaultReport {
         $this->parent_url = $parent_url;
+        return $this;
     }
 
     /**
