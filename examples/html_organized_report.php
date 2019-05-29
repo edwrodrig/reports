@@ -49,7 +49,7 @@ $report = new ReportSet(Person::class, $data);
 $html_report = new HtmlOrganizedReport($report);
 
 $html_report->setTitle('Example report');
-$html_report->setTargetDir('/home/edwin');
+$html_report->setTargetDir('/home/edwin/persons');
 $html_report->setIdColumnName('boss');
 $html_report->setElementColumnName('persons');
 $html_report->print();

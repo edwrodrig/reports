@@ -114,6 +114,11 @@ class HtmlOrganizedReport
      * Print the report
      */
     public function print() {
+
+        if ( file_exists($this->target_dir) )
+            system(sprintf("rm -rf %s", $this->target_dir));
+        system(sprintf("mkdir -p %s", $this->target_dir));
+
         ob_start();
         ?>
         <!DOCTYPE html>
